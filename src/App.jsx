@@ -3,6 +3,7 @@ import { useForm, Controller, useWatch } from "react-hook-form";
 import { FormSelect } from "./components/form-select";
 import Modal from "./components/modal";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { fetchAvailableStations } from "./mocks/fetchStations";
 
 const carTypeOptions = [
   "Toyota Corolla",
@@ -55,17 +56,8 @@ function App() {
     try {
       setLoading(true);
       console.log(carType, repairService);
-      const response = await fetch(
-        `https://www.balancee.com/stations?carType=${encodeURIComponent(
-          carType
-        )}&service=${encodeURIComponent(repairService)}`
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const result = await response.json();
-      setAvailableStations(result.stations);
+      const data = await fetchAvailableStations(carType, repairService);
+      setAvailableStations(data.stations);
     } catch (error) {
       console.error("Error fetching stations:", error);
       setAvailableStations([]);
