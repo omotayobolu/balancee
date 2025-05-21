@@ -136,7 +136,7 @@ function App() {
             {availableStations.map((station) => (
               <div
                 key={station.id}
-                className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-5"
+                className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-5 animate-fade-in-up transition-all duration-500"
               >
                 <p className="text-base font-medium text-dark-grey">
                   {station.name}
@@ -160,7 +160,7 @@ function App() {
                           setSelectedStation(station);
                           setSlotError("");
                         }}
-                        className={`rounded-md py-2 px-4 text-center cursor-pointer text-sm ${
+                        className={`rounded-md py-2 px-4 text-center cursor-pointer text-sm transition duration-200 ease-in-out transform hover:scale-[1.01] ${
                           isSelected
                             ? "bg-black text-white"
                             : "border border-border text-dark-grey"
@@ -177,7 +177,7 @@ function App() {
 
           <button
             type="submit"
-            className="w-full py-3 bg-black hover:opacity-90 text-white font-medium rounded-lg text-base cursor-pointer"
+            className="w-full mt-2 py-3 bg-black hover:opacity-90 hover:scale-[1.01] transition-transform duration-200 text-white font-medium rounded-lg text-base cursor-pointer"
           >
             Book Now
           </button>

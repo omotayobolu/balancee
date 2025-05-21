@@ -9,3 +9,15 @@
   --color-grey: #737373;
   --color-modal: rgba(16, 12, 12, 0.66);
 }
+
+.animate-fade-in-up {
+  @apply opacity-0 translate-y-4;
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
