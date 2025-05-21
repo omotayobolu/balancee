@@ -49,6 +49,7 @@ function App() {
 
   useEffect(() => {
     if (carType && repairService) {
+      setSlotError("");
       fetchStations(carType, repairService);
     }
   }, [carType, repairService]);
@@ -70,6 +71,11 @@ function App() {
   const onsubmit = () => {
     if (!selectedSlot || !selectedStation) {
       setSlotError("Please select a time slot.");
+
+      if (availableStations.length === 0) {
+        setSlotError("No stations available for this repair service");
+      }
+
       return;
     }
 
@@ -124,10 +130,13 @@ function App() {
             {!loading &&
               availableStations.length === 0 &&
               carType &&
-              repairService && (
+              repairService &&
+              !slotError && (
                 <p className="text-center text-grey">No stations available</p>
               )}
-            {slotError && <p className="text-red text-sm">{slotError}</p>}
+            {slotError && (
+              <p className="text-red text-sm text-center">{slotError}</p>
+            )}
             {availableStations.length > 0 && (
               <p className="text-lg font-medium mb-2 text-dark-grey">
                 Available Stations:
